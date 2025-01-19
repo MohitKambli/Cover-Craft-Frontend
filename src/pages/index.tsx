@@ -26,7 +26,6 @@ export default function Home() {
       const formData = new FormData();
       formData.append("resume", resume);
       formData.append("job_description", jobDescription);
-
       const response = await fetch("https://cover-craft-backend.vercel.app/generate-cover-letter", {
         method: "POST",
         body: formData,
