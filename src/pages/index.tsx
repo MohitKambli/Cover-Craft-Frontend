@@ -29,6 +29,9 @@ export default function Home() {
 
       const response = await fetch("https://cover-craft-backend-mohits-projects-db75fd8f.vercel.app/generate-cover-letter", {
         method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: formData,
       });
 
