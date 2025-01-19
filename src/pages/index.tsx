@@ -28,7 +28,7 @@ export default function Home() {
       formData.append("job_description", jobDescription);
 
       const response = await fetch("https://cover-craft-backend-mohits-projects-db75fd8f.vercel.app/generate-cover-letter", {
-        method: "GET",
+        method: "POST",
         body: formData,
       });
 
@@ -37,6 +37,7 @@ export default function Home() {
       }
 
       const data = await response.json();
+      console.log('Data: ', data);
       console.log('Data: ', data['cover_letter']);
       setCoverLetter(data.cover_letter || "No cover letter was generated.");
     } catch (error) {
