@@ -37,6 +37,7 @@ export default function Home() {
       }
 
       const data = await response.json();
+      console.log(data);
       setCoverLetter(data.cover_letter || "No cover letter was generated.");
     } catch (error) {
       console.error("Error generating cover letter:", error);
