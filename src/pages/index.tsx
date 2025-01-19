@@ -2,6 +2,7 @@ import { useState } from "react";
 import ResumeUpload from "../components/ResumeUpload";
 import JobDescriptionInput from "../components/JobDescriptionInput";
 import CoverLetterOutput from "../components/CoverLetterOutput";
+import { FaSpinner } from 'react-icons/fa';
 
 export default function Home() {
   const [resume, setResume] = useState<File | null>(null);
@@ -46,19 +47,19 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-10 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md">
-        <h1 className="text-2xl font-bold text-gray-900 mb-4">CoverCraft</h1>
+    <div className="min-h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-2xl">
+        <h1 className="text-3xl font-extrabold text-gray-900 mb-6 text-center">CoverCraft</h1>
 
         <ResumeUpload onFileChange={handleFileChange} />
-        <JobDescriptionInput setJobDescription={setJobDescription} />
+        <JobDescriptionInput setJobDescription={setJobDescription} disabled={loading} />
 
         <button
           onClick={generateCoverLetter}
-          className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 mb-4"
+          className={`w-full bg-gradient-to-r from-blue-500 to-teal-400 text-white py-3 px-6 rounded-lg shadow-md hover:bg-gradient-to-r hover:from-blue-600 hover:to-teal-500 transition ease-in-out duration-300 flex items-center justify-center ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
           disabled={loading}
         >
-          {loading ? "Generating..." : "Generate Cover Letter"}
+          {loading ? <FaSpinner className="animate-spin mr-2" /> : 'Generate Cover Letter'}
         </button>
 
         <CoverLetterOutput coverLetter={coverLetter} />
