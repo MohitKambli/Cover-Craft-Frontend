@@ -30,6 +30,9 @@ export default function Home() {
       const response = await fetch("https://cover-craft-backend.vercel.app/generate-cover-letter", {
         method: "POST",
         body: formData,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
       });
 
       if (!response.ok) {
@@ -37,8 +40,6 @@ export default function Home() {
       }
 
       const data = await response.json();
-      console.log('Data: ', data);
-      console.log('Data: ', data['cover_letter']);
       setCoverLetter(data.cover_letter || "No cover letter was generated.");
     } catch (error) {
       console.error("Error generating cover letter:", error);
